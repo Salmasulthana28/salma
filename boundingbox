@@ -1,0 +1,17 @@
+import csv
+import os 
+with open("7622202030987_bounding_box.csv","r") as csv_file:
+     csv_reader = csv.reader(csv_file)
+     for column in csv_reader:
+        print(column)
+     for row in csv_reader:
+        image_name = row['7622202030987_bounding_box.csv']
+        image_path = os.path.join(image_dir, image_name)
+        output_path = os.path.join(output_dir, image_name)
+        image = Image.open("/home/salma-sulthana/Desktop/my.experiment/7622202030987/7622202030987_f306535d741c9148dc458acbbc887243_L_487.png")
+        boxes = [{'left': row['xmin'], 'top': row['ymin'], 'right': row['xmax'], 'bottom': row['ymax']}]
+        cropped_images = crop_image(image, boxes)
+        for i, cropped_img in enumerate(cropped_images):
+            cropped_img.save(os.path.join(output_dir, f"{i}_{image_name}"))  
+        full_image_with_boxes = draw_boxes(image, boxes)
+        full_image_with_boxes.save(os.path.join(output_dir, f"full_{image_name}"))
