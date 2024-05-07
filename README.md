@@ -28,3 +28,9 @@ To create a histogram of our image data, we use the hist() function.
 histr = cv2.calcHist([img],[0],None,[256],[0,256]) 
 
 ![Figure_1](https://github.com/Salmasulthana28/salma/assets/169051854/f29a2fb9-cd2e-4da4-ae43-bb01fb004ac9)
+
+In our histogram, it looks like there’s distribution of intensity all over image Black and White pixels as grayscale image.
+
+From the histogram, we can conclude that dark region is more than brighter region.
+
+
