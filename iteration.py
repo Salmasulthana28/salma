@@ -1,9 +1,15 @@
-def print_sum_of_previous_and_current():
-    previous_number = 0
-    for i in range(1, 11):
-        current_number = i
-        sum_of_previous_and_current = previous_number + current_number
-        print(f"Current Number: {current_number}, Previous Number: {previous_number}, Sum: {sum_of_previous_and_current}")
-        previous_number = current_number
+# Initialize variables
+current = 1
+previous = 0
 
-print_sum_of_previous_and_current()
+# Iterate through the first 10 numbers
+for i in range(1, 11):
+    # Calculate the sum of the current and previous number
+    sum = current + previous
+    
+    # Print the current and previous number
+    print(f"Previous number: {previous}, Current number: {current}")
+    
+    # Update the variables for the next iteration
+    previous = current
+    current = sum
