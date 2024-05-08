@@ -44,6 +44,18 @@ To see if there is variation in the data
 
 To make future prediction based on the data
 
+
+
 ##BOUNDING BOX
 
 using this CSV, Crop the image and  on  the full sized images Draw bounding box
+
+This script is designed to process images and associated bounding box data stored in a CSV file. It reads the CSV file containing bounding box coordinates for each image, draws bounding boxes on the images, and saves the resulting images with boxes outlined in red. Additionally, it crops the areas defined by the bounding boxes into separate images and saves them individually.
+
+Required Libraries
+
+os for file operations,
+
+csv for CSV file parsing,
+
+and PIL (Python Imaging Library) for image processing.
