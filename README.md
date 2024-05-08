@@ -265,6 +265,10 @@ By running capture_video(), you can start capturing video from the default camer
 capture_video()
 ```
 
+## output
+
+
+
 
 
 
