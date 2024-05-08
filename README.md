@@ -128,8 +128,7 @@ with open(csv_file, 'r') as file:
         full_image_with_boxes.save(os.path.join(output_dir, f"full_{image_name}"))
 ```
 
-![Uploading full_7622202030987_f306535d741c9148dc458acbbc887243_L_538.png…]()
-
+![0_7622202030987_f306535d741c9148dc458acbbc887243_L_487](https://github.com/Salmasulthana28/salma/assets/169051854/dc9e27bf-08b0-4530-a92d-aea7b0a10215)
 
 
 ## ITERATION OF THE FIRST 10 NUMBERS
