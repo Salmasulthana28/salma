@@ -125,5 +125,72 @@ with open(csv_file, 'r') as file:
 ![full_7622202030987_f306535d741c9148dc458acbbc887243_L_538](https://github.com/Salmasulthana28/salma/assets/169051854/8af411b2-676c-46d1-bf99-3146c8a68ca6)
 
 
-  
+
+
+## ITERATION OF THE FIRST 10 NUMBERS
+
+This script iterates through the first 10 numbers and calculates the Fibonacci sequence, where each number is the sum of the two preceding ones.
+
+current is set to 1, representing the current number in the Fibonacci sequence.
+
+previous is set to 0, representing the number before the current one.
+
+#Initialize variables
+
+```
+current = 1
+previous = 0
+```
+
+It iterates through the range from 1 to 10 (inclusive), representing the first 10 numbers in the sequence.
+
+#Iterate through the first 10 numbers
+```
+for i in range(1, 11):
+    # Calculate the sum of the current and previous number
+    sum = current + previous
+# Print the current and previous number
+    print(f"Previous number: {previous}, Current number: {current}")
+    
+    # Update the variables for the next iteration
+    previous = current
+    current = sum
+
+```
+
+Inside the loop, it calculates the sum of the current and previous numbers, representing the next number in the sequence.
+This sum is stored in the variable sum.
+
+It prints the previous and current numbers for each iteration using f-strings
+
+These values represent the current number and the number before it.
+
+It updates the previous variable to the value of current, representing the number before the current one.
+
+It updates the current variable to the calculated sum, representing the current number for the next iteration.
+
+This process continues for each iteration, generating the Fibonacci sequence and printing the current and previous numbers at each step.
+
+## output
+
+
+Previous number: 1, Current number: 1
+
+Previous number: 1, Current number: 2
+
+Previous number: 2, Current number: 3
+
+Previous number: 3, Current number: 5
+
+Previous number: 5, Current number: 8
+
+Previous number: 8, Current number: 13
+
+Previous number: 13, Current number: 21
+
+Previous number: 21, Current number: 34
+
+Previous number: 34, Current number: 55
+
+    
 
