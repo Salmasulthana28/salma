@@ -14,7 +14,7 @@ image analyses using
 
 The image should be used in a PNG files as matplotlib support only PNG images.Here it is 24-bits RGB PNG image  (8bits of R,G,B)
 
-img = cv2.imread('/home/salma-sulthana/Downloads/abbu.png',0) 
+"img = cv2.imread('/home/salma-sulthana/Downloads/abbu.png',0)" 
 
 
 
@@ -25,7 +25,7 @@ with pixel values (ranging from 0 to 255). Grayscale image is an image in which 
 
 To create a histogram of our image data, we use the hist() function.
 
-histr = cv2.calcHist([img],[0],None,[256],[0,256]) 
+"histr = cv2.calcHist([img],[0],None,[256],[0,256])" 
 
 ![Figure_1](https://github.com/Salmasulthana28/salma/assets/169051854/f29a2fb9-cd2e-4da4-ae43-bb01fb004ac9)
 
