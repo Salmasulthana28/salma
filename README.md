@@ -133,7 +133,7 @@ with open(csv_file, 'r') as file:
 
 ## ITERATION OF THE FIRST 10 NUMBERS
 
-This script iterates through the first 10 numbers and calculates the Fibonacci sequence, where each number is the sum of the two preceding ones.
+This script iterates through the first 10 numbers and calculates the  sequence, where each number is the sum of the two preceding ones.
 
 current is set to 1, representing the current number in the Fibonacci sequence.
 
@@ -197,6 +197,8 @@ Previous number: 21, Current number: 34
 Previous number: 34, Current number: 55
 
 ## CAPTURE VIDEO FROM WEBCAM
+
+This script through we do a video capture from webcam
 
 Using Libraries
 ```
