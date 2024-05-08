@@ -56,6 +56,61 @@ Required Libraries
 
 os for file operations,
 
-csv for CSV file parsing,
+csv for CSV file read
 
 and PIL (Python Imaging Library) for image processing.
+
+Defining Paths: It defines paths for the CSV file, the directory containing the images, and the output directory where the processed images will be saved.
+
+Creating Output Directory: It ensures that the output directory exists; if not, it creates it.
+
+
+```
+csv_file = "/home/salma-sulthana/Downloads/7622202030987_bounding_box.csv"
+image_dir = "/home/salma-sulthana/Downloads/7622202030987/"
+output_dir = "/home/salma-sulthana/Downloads/7622202030987_with_boxes"
+
+```
+draw_boxes(image, boxes): This function takes an image and a list of bounding boxes as input and draws rectangles around each bounding box on the image. It returns the modified image.
+crop_image(image, boxes): This function crops regions defined by the bounding boxes from the input image. It returns a list of cropped images.
+        It opens the CSV file and iterates over each row (each row corresponds to an image).
+        For each row, it constructs the path to the corresponding image file and opens the image using Image.open() from PIL.
+        It extracts bounding box coordinates from the CSV file and stores them in a list of dictionaries.
+        It then calls crop_image() to crop regions defined by the bounding boxes.
+        It saves each cropped image separately with a prefix indicating its order in the original image and the original image's filename.
+        It calls draw_boxes() to draw bounding boxes on the original image and saves the modified image with the bounding boxes outlined in red.
+
+This script is useful for tasks like object detection, where you have images with associated bounding box annotations and you want to visualize the bounding boxes or extract the regions defined by the bounding boxes for further analysis.
+
+
+```
+os.makedirs(output_dir, exist_ok=True)
+
+
+def draw_boxes(image, boxes):
+    draw = ImageDraw.Draw(image)
+    for box in boxes:
+        left = int(box['left'])
+        top = int(box['top'])
+        right = int(box['right'])
+        bottom = int(box['bottom'])
+        draw.rectangle([left, top, right, bottom], outline="red")
+    return image
+
+
+with open(csv_file, 'r') as file:
+    csv_reader = csv.DictReader(file)
+    for row in csv_reader:
+        image_name = row['filename']
+        image_path = os.path.join(image_dir, image_name)
+        output_path = os.path.join(output_dir, image_name)
+        image = Image.open(image_path)
+        boxes = [{'left': row['xmin'], 'top': row['ymin'], 'right': row['xmax'], 'bottom': row['ymax']}]
+        cropped_images = crop_image(image, boxes)
+        for i, cropped_img in enumerate(cropped_images):
+            cropped_img.save(os.path.join(output_dir, f"{i}_{image_name}"))  
+        full_image_with_boxes = draw_boxes(image, boxes)
+        full_image_with_boxes.save(os.path.join(output_dir, f"full_{image_name}"))
+```
+  
+
