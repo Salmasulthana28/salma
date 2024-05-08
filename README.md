@@ -192,5 +192,74 @@ Previous number: 21, Current number: 34
 
 Previous number: 34, Current number: 55
 
+## CAPTURE VIDEO FROM WEBCAM
+
+Using Libraries
+```
+import cv2
+```
+
+ This function encapsulates the process of capturing video from the camera.
+
+
+It opens the default camera using cv2.VideoCapture(0). The argument 0 usually denotes the default camera. You can also specify a different camera index if you have multiple cameras connected.
+
+
+It checks if the camera opened successfully using the isOpened() method. If the camera couldn't be opened, an error message is printed, and the function returns.
+
+
+Inside the main loop, it continuously captures frames from the camera.
+
+It uses cap.read() to capture a frame. The return value ret indicates whether the frame was successfully captured, and frame contains the captured frame.
+```
+def capture_video():
+    # Open the default camera (usually webcam)
+    cap = cv2.VideoCapture(0)
+
+    # Check if camera opened successfully
+    if not cap.isOpened():
+        print("Error: Couldn't open camera")
+        return
+
+    while True:
+        # Capture frame-by-frame
+        ret, frame = cap.read()
+```
+
+It displays the captured frame using cv2.imshow(). The window name is set to "Video Capture", and the frame is shown in this window.
+
+    
+It waits for the user to press the 'q' key to stop the video capture.
+
+cv2.waitKey(1) waits for a key press for 1 millisecond. If the pressed key is 'q' (ord('q')), the loop breaks, and the function exits.
+
+   
+Once the loop breaks, it releases the capture using cap.release() to free up the camera resources.
+
+It also closes all OpenCV windows using cv2.destroyAllWindows().
+
+By running capture_video(), you can start capturing video from the default camera, and the captured frames will be displayed in a window until you press the 'q' key to stop the capture.
+
+
+
+```
+#Display the resulting frame
+        cv2.imshow('Video Capture', frame)
+
+        # Wait for 'q' key to stop the video capture
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    # Release the capture
+    cap.release()
+    cv2.destroyAllWindows()
+
+capture_video()
+```
+
+
+
+
+
     
 
