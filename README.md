@@ -6,7 +6,7 @@ A histogram is a graphic representation of data in a grouped frequency distribut
 
 ANALYSIZE THE HISTOGRAM BY USING AN IMAGE IN OPENCV.
 
-image analyses using
+image analyses using Libraries
 
 ```
 #opencv
