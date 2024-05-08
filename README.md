@@ -89,6 +89,8 @@ crop_image(image, boxes): This function crops regions defined by the bounding bo
 This script is useful for tasks like object detection, where you have images with associated bounding box annotations and you want to visualize the bounding boxes or extract the regions defined by the bounding boxes for further analysis.
 
 
+
+
 ```
 os.makedirs(output_dir, exist_ok=True)
 
