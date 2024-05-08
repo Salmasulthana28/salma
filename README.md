@@ -118,6 +118,7 @@ with open(csv_file, 'r') as file:
         full_image_with_boxes = draw_boxes(image, boxes)
         full_image_with_boxes.save(os.path.join(output_dir, f"full_{image_name}"))
 ```
+![full_7622202030987_f306535d741c9148dc458acbbc887243_L_538](https://github.com/Salmasulthana28/salma/assets/169051854/8af411b2-676c-46d1-bf99-3146c8a68ca6)
 
 
   
