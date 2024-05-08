@@ -131,6 +131,7 @@ with open(csv_file, 'r') as file:
 
 
 
+
 ## ITERATION OF THE FIRST 10 NUMBERS
 
 This script iterates through the first 10 numbers and calculates the Fibonacci sequence, where each number is the sum of the two preceding ones.
