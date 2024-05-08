@@ -33,7 +33,7 @@ In our histogram, it looks like there’s distribution of intensity all over ima
 
 From the histogram, we can conclude that dark region is more than brighter region.
 
-Uses for Histogra:
+Uses for Histogram:
 
 
 To display large amount of datavalues in a relatively simple chat form
