@@ -39,7 +39,7 @@ In our histogram, it looks like there’s distribution of intensity all over ima
 
 From the histogram, we can conclude that dark region is more than brighter region.
 
-Uses for Histogram:
+## Uses for Histogram:
 
 
 To display large amount of datavalues in a relatively simple chat form
@@ -106,8 +106,13 @@ def draw_boxes(image, boxes):
         bottom = int(box['bottom'])
         draw.rectangle([left, top, right, bottom], outline="red")
     return image
+```
+
+![full_7622202030987_f306535d741c9148dc458acbbc887243_L_538](https://github.com/Salmasulthana28/salma/assets/169051854/8af411b2-676c-46d1-bf99-3146c8a68ca6)
 
 
+
+```
 with open(csv_file, 'r') as file:
     csv_reader = csv.DictReader(file)
     for row in csv_reader:
@@ -122,7 +127,6 @@ with open(csv_file, 'r') as file:
         full_image_with_boxes = draw_boxes(image, boxes)
         full_image_with_boxes.save(os.path.join(output_dir, f"full_{image_name}"))
 ```
-![full_7622202030987_f306535d741c9148dc458acbbc887243_L_538](https://github.com/Salmasulthana28/salma/assets/169051854/8af411b2-676c-46d1-bf99-3146c8a68ca6)
 
 
 
