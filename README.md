@@ -70,6 +70,8 @@ Defining Paths: It defines paths for the CSV file, the directory containing the 
 
 Creating Output Directory: It ensures that the output directory exists; if not, it creates it.
 
+![7622202030987_f306535d741c9148dc458acbbc887243_L_538](https://github.com/Salmasulthana28/salma/assets/169051854/96d35f7f-db7c-4d23-8f3c-53628e4ad5fb)
+
 
 ```
 csv_file = "/home/salma-sulthana/Downloads/7622202030987_bounding_box.csv"
