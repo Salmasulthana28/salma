@@ -207,64 +207,73 @@ Using Libraries
 import cv2
 ```
 
-import cv2 
-  
-   
-#Create an object to read  
-#from camera 
-video = cv2.VideoCapture(0) 
-   
-#We need to check if camera 
-#is opened previously or not 
+The script imports the OpenCV library, which is used for computer vision tasks, including capturing and processing video.
+
+
+```
+video = cv2.VideoCapture(0)
+```
+
+This line initializes the video capture object. It opens the default camera (index 0). If you have multiple cameras connected, you can specify the index of the camera you want to use.
+
+```
 if (video.isOpened() == False):  
-    print("Error reading video file") 
-  
-#We need to set resolutions. 
-#so, convert them from float to integer. 
+    print("Error reading video file")
+```
+
+This checks if the camera is opened successfully. If there's an issue with opening the camera, it prints an error message.
+
+```
 frame_width = int(video.get(3)) 
-frame_height = int(video.get(4)) 
+frame_height = int(video.get(4))
+```
+
+These lines get the frame width and height from the video capture object. The get() function is used to retrieve properties of the video capture object. Here, 3 corresponds to 
    
-size = (frame_width, frame_height) 
-   
-#Below VideoWriter object will create 
-#a frame of above defined The output  
-#is stored in 'filename.avi' file. 
-result = cv2.VideoWriter('M.avi',  
-                         cv2.VideoWriter_fourcc(*'MJPG'), 
-                         10, size) 
+```
+size = (frame_width, frame_height)
+``` 
+
+
+This line creates a tuple size containing the width and height of the frames.
+
+
+```
+result = cv2.VideoWriter('M.avi',cv2.VideoWriter_fourcc(*'MJPG'),  10, size)
+```
+
+This loop captures frames from the camera one by one. The read() method returns two values: ret (a boolean indicating if the frame is captured successfully) and frame (the captured frame).This line writes the captured frame to the output video file
+
+This line displays the captured frame in a window with the title "Frame".This checks if the 's' key is pressed. If 's' is pressed, it breaks out of the loop and stops capturing video.After the loop ends, these lines release the video capture and video write objects, releasing the resources associated 
+
+
+
     
+```
 while(True): 
-    ret, frame = video.read() 
-  
+    ret, frame = video.read()
+
     if ret == True:  
-  
-        # Write the frame into the 
-        # file 'filename.avi' 
+
         result.write(frame) 
   
-        # Display the frame 
-        # saved in the file 
+       
         cv2.imshow('Frame', frame) 
   
-        # Press S on keyboard  
-        # to stop the process 
+        
         if cv2.waitKey(1) & 0xFF == ord('s'): 
             break
-  
-    # Break the loop 
     else: 
         break
-  
-#When everything done, release  
-#the video capture and video  
-#write objects 
-video.release() 
+
+video.release()
+
 result.release() 
     
-#Closes all the frames 
 cv2.destroyAllWindows() 
    
 print("The video was successfully saved")
+```
 
 
 
