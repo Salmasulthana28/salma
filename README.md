@@ -207,63 +207,66 @@ Using Libraries
 import cv2
 ```
 
- This function encapsulates the process of capturing video from the camera.
-
-
-It opens the default camera using cv2.VideoCapture(0). The argument 0 usually denotes the default camera. You can also specify a different camera index if you have multiple cameras connected.
-
-
-It checks if the camera opened successfully using the isOpened() method. If the camera couldn't be opened, an error message is printed, and the function returns.
-
-
-Inside the main loop, it continuously captures frames from the camera.
-
-It uses cap.read() to capture a frame. The return value ret indicates whether the frame was successfully captured, and frame contains the captured frame.
-```
-def capture_video():
-    # Open the default camera (usually webcam)
-    cap = cv2.VideoCapture(0)
-
-    # Check if camera opened successfully
-    if not cap.isOpened():
-        print("Error: Couldn't open camera")
-        return
-
-    while True:
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-```
-
-It displays the captured frame using cv2.imshow(). The window name is set to "Video Capture", and the frame is shown in this window.
-
-    
-It waits for the user to press the 'q' key to stop the video capture.
-
-cv2.waitKey(1) waits for a key press for 1 millisecond. If the pressed key is 'q' (ord('q')), the loop breaks, and the function exits.
-
+import cv2 
+  
    
-Once the loop breaks, it releases the capture using cap.release() to free up the camera resources.
-
-It also closes all OpenCV windows using cv2.destroyAllWindows().
-
-By running capture_video(), you can start capturing video from the default camera, and the captured frames will be displayed in a window until you press the 'q' key to stop the capture.
-
-
-
-```
-#Display the resulting frame
-        cv2.imshow('Video Capture', frame)
-
-        # Wait for 'q' key to stop the video capture
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+#Create an object to read  
+#from camera 
+video = cv2.VideoCapture(0) 
+   
+#We need to check if camera 
+#is opened previously or not 
+if (video.isOpened() == False):  
+    print("Error reading video file") 
+  
+#We need to set resolutions. 
+#so, convert them from float to integer. 
+frame_width = int(video.get(3)) 
+frame_height = int(video.get(4)) 
+   
+size = (frame_width, frame_height) 
+   
+#Below VideoWriter object will create 
+#a frame of above defined The output  
+#is stored in 'filename.avi' file. 
+result = cv2.VideoWriter('M.avi',  
+                         cv2.VideoWriter_fourcc(*'MJPG'), 
+                         10, size) 
+    
+while(True): 
+    ret, frame = video.read() 
+  
+    if ret == True:  
+  
+        # Write the frame into the 
+        # file 'filename.avi' 
+        result.write(frame) 
+  
+        # Display the frame 
+        # saved in the file 
+        cv2.imshow('Frame', frame) 
+  
+        # Press S on keyboard  
+        # to stop the process 
+        if cv2.waitKey(1) & 0xFF == ord('s'): 
             break
+  
+    # Break the loop 
+    else: 
+        break
+  
+#When everything done, release  
+#the video capture and video  
+#write objects 
+video.release() 
+result.release() 
+    
+#Closes all the frames 
+cv2.destroyAllWindows() 
+   
+print("The video was successfully saved")
 
-    # Release the capture
-    cap.release()
-    cv2.destroyAllWindows()
 
-capture_video()
-```
 
 ## output
 
