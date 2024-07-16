@@ -33,9 +33,7 @@ def load_data_tf(folder_path, input_shape):
     X = np.array(X)
     y = np.array(y)
     return X, y
-import tensorflow as tf
-import numpy as np
-import os
+
 # Load training data
 X_train, y_train = load_data_tf(train_dir, input_shape)
 X_train = X_train / 255.0
