@@ -105,9 +105,6 @@ def train_perceptron(X_train, y_train, weights, bias, learning_rate, num_epochs,
     print(f"Test Accuracy: {test_accuracy_value * 100:.2f}%")
 
     return accuracies
-import numpy as np
-import os
-import cv2  
 
 # Function to test accuracy on a dataset
 def test_accuracy(X, y, weights, bias):
