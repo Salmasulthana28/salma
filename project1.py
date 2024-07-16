@@ -39,10 +39,7 @@ for root, dirs, files in os.walk(source_dir):
     
     for file in val_files:
         file_path = os.path.join(root, file)
-        shutil.move(file_path, os.path.join(val_dir, file))
-import os
-import shutil
-
+        shutil.move(file_path, os.path.join(val_dir, file)
 
 
 # Define paths to your training, validation, and testing data
