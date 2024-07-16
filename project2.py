@@ -1,43 +1,74 @@
+import tensorflow as tf
 import os
-import shutil
+import cv2  # Assuming you have OpenCV installed for image processing
+import numpy as np
 
-# Set your source and destination paths
-source_dir = '/home/salma-sulthana/Downloads/9.mnist_data(1)/9/'
-train_dir = 'train'
-test_dir = 'test'
-val_dir = 'validation'
+# Define paths to your training, validation, and testing data
+train_dir = "/home/salma-sulthana/Downloads/salma.sulthana/train"
+test_dir = "/home/salma-sulthana/Downloads/salma.sulthana/test"
+val_dir = "/home/salma-sulthana/Downloads/salma.sulthana/validation"
 
-# Create directories if they don't exist
-os.makedirs(train_dir, exist_ok=True)
-os.makedirs(test_dir, exist_ok=True)
-os.makedirs(val_dir, exist_ok=True)
+# Initialize perceptron parameters
+learning_rate = 0.01
+num_epochs = 10
+input_shape = (28, 28, 3)  # Assuming images are resized to 28x28 and have 3 channels
 
-# Set the percentage of data for train, test, and validation
-train_split = 0.7
-test_split = 0.2
-val_split = 0.1
+# Function to load and preprocess data using TensorFlow
+def load_data_tf(folder_path, input_shape):
+    X = []
+    y = []
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.endswith(".jpg") or file.endswith(".png"):  # Assuming images are in JPG or PNG format
+                img_path = os.path.join(root, file)
+                label = 1 if "positive" in root else 0  # Example: folder structure decides the label
+                img = tf.keras.preprocessing.image.load_img(img_path, target_size=(input_shape[0], input_shape[1]))
+                img_array = tf.keras.preprocessing.image.img_to_array(img)
+                X.append(img_array)
+                y.append(label)
+    X = np.array(X)
+    y = np.array(y)
+    return X, y
 
-# Iterate through the source directory
-for root, dirs, files in os.walk(source_dir):
-    # Split files into train, test, and validation sets
-    num_files = len(files)
-    train_end = int(train_split * num_files)
-    test_end = int((train_split + test_split) * num_files)
+# Load training data
+X_train, y_train = load_data_tf(train_dir, input_shape)
 
-    train_files = files[:train_end]
-    test_files = files[train_end:test_end]
-    val_files = files[test_end:]
+# Normalize pixel values to [0, 1]
+X_train = X_train / 255.0
 
-    # Move files to respective directories
-    for file in train_files:
-        file_path = os.path.join(root, file)
-        shutil.move(file_path, os.path.join(train_dir, file))
-    
-    for file in test_files:
-        file_path = os.path.join(root, file)
-        shutil.move(file_path, os.path.join(test_dir, file))
-    
-    for file in val_files:
-        file_path = os.path.join(root, file)
-        shutil.move(file_path, os.path.join(val_dir, file))
+# Define the neural network architecture using TensorFlow's Sequential API
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Flatten(input_shape=input_shape),
+    tf.keras.layers.Dense(128, activation='relu'),
+    tf.keras.layers.Dense(1, activation='sigmoid')  # Binary classification, so using sigmoid activation
+])
 
+# Compile the model
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',  # Binary crossentropy for binary classification
+              metrics=['accuracy'])
+
+# Train the model
+model.fit(X_train, y_train, epochs=num_epochs)
+
+# Function to evaluate accuracy on a dataset
+def evaluate_accuracy(X, y):
+    X = X / 255.0  # Normalize pixel values to [0, 1]
+    _, accuracy = model.evaluate(X, y)
+    return accuracy
+
+# Evaluate training accuracy
+train_accuracy = evaluate_accuracy(X_train, y_train)
+print(f"Training Accuracy: {train_accuracy * 100:.2f}%")
+
+# Load validation data
+X_val, y_val = load_data_tf(val_dir, input_shape)
+
+# Evaluate validation accuracy
+validation_accuracy = evaluate_accuracy(X_val, y_val)
+print(f"Validation Accuracy: {validation_accuracy * 100:.2f}%")
+
+# Load testing data
+X_test, y_test = load_data_tf(test_dir, input_shape)
+
+# Evaluate test accuracy
